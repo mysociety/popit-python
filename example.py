@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from popit import build_popit_api
+from popit import PopIt
 from pprint import pprint
+import logging
 
-api = build_popit_api(instance = 'professors', hostname = '127-0-0-1.org.uk', port = 3000, user = 'domoritz@gmail.com', password = 'tJo1zBum')
+api = PopIt(instance = 'professors', hostname = '127-0-0-1.org.uk', port = 3000, user = 'test@test.co.uk', password = 'tJo1zBum')
 
 # Create
 print("CREATE")
@@ -27,7 +28,3 @@ pprint(result)
 print("DELETE")
 result = api.person(id).delete()
 pprint(result)
-
-# META
-print("META")
-pprint(api.get())
