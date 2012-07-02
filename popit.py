@@ -66,15 +66,3 @@ class PopIt(object):
 		url = 'http://{instance}.{hostname}:{port}/api'.format(instance = self.instance, hostname = self.hostname, port = self.port)
 		log.debug('PopIt Url: {}'.format(url))
 		return url
-
-def test():
-	p = PopIt(instance = 'professors', hostname = '127-0-0-1.org.uk', port = 3000, user = 'test@test.co.uk', password = 'tJo1zBum')
-
-	# save version
-	print p.person.post({'name': 'Albert Keinstein'})
-
-	# unsave version
-	#print p.api.person.post({'name': 'Albert Keinstein'})
-
-if __name__ == '__main__':
-	test()

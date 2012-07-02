@@ -3,7 +3,6 @@
 
 from popit import PopIt
 from pprint import pprint
-import logging
 
 api = PopIt(instance = 'professors', hostname = '127-0-0-1.org.uk', port = 3000, user = 'test@test.co.uk', password = 'tJo1zBum')
 
