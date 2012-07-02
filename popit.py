@@ -12,18 +12,11 @@ if __name__ == '__main__':
 	logging.basicConfig(level = logging.DEBUG, format=FORMAT)
 	log.setLevel(logging.DEBUG)
 
-
-class Method(object):
-    def __init__(self, client, method_name):
-        self.client = client
-        self.method_name = method_name
-
-    def __getattr__(self, key):
-        return Method(self.client, '.'.join((self.method_name, key)))
-
-    def __call__(self, *args, **kwargs):
-        print self.method_name, args, kwargs
-        return self.client.__call__(*args, **kwargs)
+class SchemaError(KeyError):
+	def __init__(self, value):
+		self.value = value
+	def __str__(self):
+		return repr(self.value)
 
 class PopIt(object):
 	def __init__(self, **args):
@@ -52,7 +45,12 @@ class PopIt(object):
 
 	def __getattr__(self, key):
 		if key in self.schemas:
-			return self.api.__call__(key)
+			try:
+				return self.api.__call__(key)
+			except Exception, e:
+				raise e
+		else:
+			raise SchemaError('{} does not exist. Try one of these schemas: {}.'.format(key, ', '.join(self.schemas)))
 
 	def __api(self):
 		slumber = self.__slumber_api()
