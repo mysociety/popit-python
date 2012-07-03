@@ -52,6 +52,34 @@ class CreateTest(object):
 	def _(self):
 		self.p.person.post({'name': 'Albert Keinstein'})
 
+class ReadTest(object):
+	@classmethod
+	def before_all(cls):
+		cls.p = PopIt(**conf)
+
+	def before(self):
+		self.p = self.__class__.p
+		new = self.p.person.post({
+			'name': 'Albert Keinstein', 
+			'links': [{ 
+				'url': 'http://www.wikipedia.com/AlbertEinstein',
+       			'comment': 'Wikipedia'
+       		}]
+		})
+		self.id = new['result']['_id']
+
+	@test("can read person's name")
+	def _(self):
+		result = self.p.person(self.id).get()
+		data = result['result'] 
+		ok(data['name']) == "Albert Keinstein"
+
+	@test("can read person's links")
+	def _(self):
+		result = self.p.person(self.id).get()
+		data = result['result'] 
+		ok(data['links'][0]['url']) == "http://www.wikipedia.com/AlbertEinstein"
+		ok(data['links'][0]['comment']) == "Wikipedia"
 
 class UpdateTest(object):
 	@classmethod
@@ -68,7 +96,7 @@ class UpdateTest(object):
 		self.p.person(self.id).put({"name": "Albert Einstein"})
 		result = self.p.person(self.id).get()
 		ok(result['result']['name']) == "Albert Einstein"
-		
+
 class DeleteTest(object):
 	@classmethod
 	def before_all(cls):
