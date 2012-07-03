@@ -40,7 +40,7 @@ class PopIt(object):
 	def __schemas(self):
 		schemas_dict = self.api.get()['meta'];
 		schemas = [x[:x.find('_api_url')] for x in schemas_dict.keys() if x.find('_api_url') > 0]
-		log.debug('Avalable schemas: ' + str(schemas))
+		log.debug('Available schemas: {}'.format(schemas))
 		return schemas
 
 	def __getattr__(self, key):
