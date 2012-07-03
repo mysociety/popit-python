@@ -18,12 +18,6 @@ class SchemaError(NameError):
 	def __str__(self):
 		return repr(self.value)
 
-class NotFoundError(NameError):
-	def __init__(self, value):
-		self.value = value
-	def __str__(self):
-		return repr(self.value)
-
 class PopIt(object):
 	def __init__(self, **args):
 		defaults = {
@@ -51,10 +45,7 @@ class PopIt(object):
 
 	def __getattr__(self, key):
 		if key in self.schemas:
-			try:
-				return self.api.__call__(key)
-			except HttpClientError, e:
-				raise NotFoundError('PopIt returned a 404 Error. The item you are looking for does not exist.')
+			return self.api.__call__(key)
 		else:
 			raise SchemaError('{} does not exist. Try one of these schemas: {}.'.format(key, ', '.join(self.schemas)))
 
