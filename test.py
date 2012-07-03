@@ -52,7 +52,11 @@ class CreateTest(object):
 	def _(self):
 		self.p.person.post({'name': 'Albert Keinstein'})
 
-class ReadTest(object):
+	@test("can create organisation")
+	def _(self):
+		self.p.organisation.post({'name': 'Space Party'})
+
+class ReadUpdateDeleteTest(object):
 	@classmethod
 	def before_all(cls):
 		cls.p = PopIt(**conf)
@@ -77,19 +81,9 @@ class ReadTest(object):
 	@test("can read person's links")
 	def _(self):
 		result = self.p.person(self.id).get()
-		data = result['result'] 
+		data = result['result']
 		ok(data['links'][0]['url']) == "http://www.wikipedia.com/AlbertEinstein"
 		ok(data['links'][0]['comment']) == "Wikipedia"
-
-class UpdateTest(object):
-	@classmethod
-	def before_all(cls):
-		cls.p = PopIt(**conf)
-
-	def before(self):
-		self.p = self.__class__.p
-		new = self.p.person.post({'name': 'Albert Keinstein'})
-		self.id = new['result']['_id']
 
 	@test("can edit person's name")
 	def _(self):
@@ -97,23 +91,24 @@ class UpdateTest(object):
 		result = self.p.person(self.id).get()
 		ok(result['result']['name']) == "Albert Einstein"
 
-class DeleteTest(object):
-	@classmethod
-	def before_all(cls):
-		cls.p = PopIt(**conf)
-
-	def before(self):
-		self.p = self.__class__.p
-		new = self.p.person.post({'name': 'Albert Keinstein'})
-		self.id = new['result']['_id']
-
 	@test("can delete person")
 	def _(self):
 		result = self.p.person(self.id).delete()
 		ok(result) == True
 		def f():
 			result = self.p.person(self.id).get()
-		ok (f).raises(HttpClientError)
+		ok (f).raises(NotFoundError)
+
+	@test("cannot delete person twice")
+	def _(self):
+		result = self.p.person(self.id).delete()
+		ok(result) == True
+		
+		def f():
+			self.p.person(self.id).delete()
+		ok (f).raises(NotFoundError)
+
+		
 
 ## invoke tests
 if __name__ == '__main__':

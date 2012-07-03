@@ -12,7 +12,13 @@ if __name__ == '__main__':
 	logging.basicConfig(level = logging.DEBUG, format=FORMAT)
 	log.setLevel(logging.DEBUG)
 
-class SchemaError(KeyError):
+class SchemaError(NameError):
+	def __init__(self, value):
+		self.value = value
+	def __str__(self):
+		return repr(self.value)
+
+class NotFoundError(NameError):
 	def __init__(self, value):
 		self.value = value
 	def __str__(self):
@@ -47,8 +53,8 @@ class PopIt(object):
 		if key in self.schemas:
 			try:
 				return self.api.__call__(key)
-			except Exception, e:
-				raise e
+			except HttpClientError, e:
+				raise NotFoundError('PopIt returned a 404 Error. The item you are looking for does not exist.')
 		else:
 			raise SchemaError('{} does not exist. Try one of these schemas: {}.'.format(key, ', '.join(self.schemas)))
 
