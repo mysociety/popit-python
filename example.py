@@ -12,7 +12,7 @@ new = api.person.post({'name': 'Albert Keinstein'})
 pprint(new)
 
 id = new['result']['_id']
-
+	
 # Update
 print("UPDATE")
 result = api.person(id).put({"name": "Albert Einstein"})
@@ -22,6 +22,10 @@ pprint(result)
 print("READ")
 result = api.person(id).get()
 pprint(result)
+
+# read all
+results = api.person().get()
+pprint(results)
 
 # Delete
 print("DELETE")
