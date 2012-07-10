@@ -57,15 +57,15 @@ To get all Items from a kind, use `name`.
 
 This is easy. This wrapper helps you with various error messages that help you get the wrapper working. Here are some explanations for error messages. 
 
-** HttpClientError: Client Error 404 **
+**HttpClientError: Client Error 404**
 You are looking for an item that does not exist. Please provide a valid id. This Error can happen when you ty to *create*, *read*, *update* or *delete* an item. 
 
-** HttpClientError: Client Error 401 **
+**HttpClientError: Client Error 401**
 You wanted to *create*, *update* or *delete* an item but provided a wrong username or password. 
 
 *Note*: You won't see this error before you actually try to modify any data. 
 
-** SchemaError: 'foo does not exist. Try one of these schemas: organisation, position, person.' **
+**SchemaError: 'foo does not exist. Try one of these schemas: organisation, position, person.'**
 This happens when you try to get data from a schema that does not exist (in this case `foo`). The available schemas are determined when you first create the api object. 
 
 ### …get more information abou what's going on internally? ###
