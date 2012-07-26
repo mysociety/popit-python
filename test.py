@@ -27,7 +27,7 @@ class GetterSetterTest(object):
 	def before(self):
 		self.p = self.__class__.p
 
-	@test("constructor should set right memembers")
+	@test("constructor should set right members")
 	def _(self):
 		for i, k in enumerate(keys):
 			v = vals[i]
