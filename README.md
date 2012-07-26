@@ -1,6 +1,6 @@
 #popit-python #
 
-Python bindings to connect to the PopIt API. You can *create*, *read*, *update* and *delete* any items from PopIt through this Binding. Actually, this is only a convenient wrapper around PopIt's RESTful API.
+Python bindings to connect to the [PopIt](https://github.com/mysociety/popit) API. You can *create*, *read*, *update* and *delete* any items from PopIt through this Binding. Actually, this is only a convenient wrapper around [PopIt's](https://github.com/mysociety/popit) RESTful API.
 
 
 ## How do I use this when I want to... ##
@@ -22,7 +22,7 @@ First, you'll need to get the PopIt binding object. Make sure PopIt as running a
 
 ### …create something? ###
 
-This PopitWrapper lets you easily create a new item by name. This can be a `person`, `organisation` or `position`. There may be other options that you can find in the [PopIt API documentation](). 
+This PopitWrapper lets you easily create a new item by name. This can be a `person`, `organisation` or `position`. There may be other options that you can find in the [PopIt API documentation](https://github.com/mysociety/popit/wiki/API-Overview). 
 
     new = api.person.post({'name': 'Albert Keinstein'})
     print(new)
