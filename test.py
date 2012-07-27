@@ -8,6 +8,8 @@ from pprint import pprint
 from oktest import test, ok, NG
 import oktest
 
+oktest.DIFF = repr
+
 logging.basicConfig(level = logging.WARN, format=FORMAT)
 
 # load configuration
@@ -130,8 +132,6 @@ class ReadUpdateDeleteTest(object):
 		def f():
 			self.p.person(self.id).delete()
 		ok (f).raises(HttpClientError)
-
-		
 
 ## invoke tests
 if __name__ == '__main__':

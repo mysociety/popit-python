@@ -4,6 +4,7 @@
 import slumber
 import logging
 from pprint import pprint
+from requests.exceptions import *
 
 FORMAT = "[PopIt | %(levelname)s] %(message)s"
 log = logging.getLogger(__name__)
@@ -37,17 +38,17 @@ class PopIt(object):
 	def getGenericApi(self):
 		return self.api
 
-	def __schemas(self):
-		schemas_dict = self.api.get()['meta'];
-		schemas = [x[:x.find('_api_url')] for x in schemas_dict.keys() if x.find('_api_url') > 0]
-		log.debug('Available schemas: {}'.format(schemas))
-		return schemas
-
 	def __getattr__(self, key):
 		if key in self.schemas:
 			return self.api.__call__(key)
 		else:
 			raise SchemaError('{} does not exist. Try one of these schemas: {}.'.format(key, ', '.join(self.schemas)))
+
+	def __schemas(self):
+		schemas_dict = self.api.get()['meta'];
+		schemas = [x[:x.find('_api_url')] for x in schemas_dict.keys() if x.find('_api_url') > 0]
+		log.debug('Available schemas: {}'.format(schemas))
+		return schemas
 
 	def __api(self):
 		slumber = self.__slumber_api()
