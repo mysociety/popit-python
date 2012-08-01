@@ -5,10 +5,9 @@ from popit import *
 from slumber.exceptions import *
 import logging
 from pprint import pprint
-from oktest import test, ok, NG
-import oktest
+from oktest import test, ok, NG, DIFF
 
-oktest.DIFF = repr
+DIFF = repr
 
 logging.basicConfig(level = logging.WARN, format=FORMAT)
 
@@ -135,4 +134,5 @@ class ReadUpdateDeleteTest(object):
 
 ## invoke tests
 if __name__ == '__main__':
+	import oktest
 	oktest.main()
