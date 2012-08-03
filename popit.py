@@ -44,6 +44,12 @@ class PopIt(object):
 
 		self.initialized = True
 
+	def __str__(self):
+		if self.initialized:
+			return str(self.__url()+'/'+self.api_version)
+		else:
+			return str(self)
+
 	def getGenericApi(self):
 		return self.api
 
