@@ -20,7 +20,14 @@ class SchemaError(NameError):
 		return repr(self.value)
 
 class PopIt(object):
-	def __init__(self, **args):
+	def __init__(self, lazy = False, **args):
+		""" Lazy means that you have to call PopIt(true) AND then set_up()
+		"""
+		self.initialized = False
+		if not lazy:
+			self.set_up(**args)
+
+	def set_up(self, **args):
 		defaults = {
 			'instance': 'www',
 			'hostname': 'popit.mysociety.org',
@@ -34,6 +41,8 @@ class PopIt(object):
 
 		self.api = self.__api()
 		self.schemas = self.__schemas()
+
+		self.initialized = True
 
 	def getGenericApi(self):
 		return self.api

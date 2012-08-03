@@ -40,6 +40,20 @@ class GetterSetterTest(object):
 			self.p.sadfhoi83jhk3323
 		ok (f).raises(SchemaError)
 
+class LazyTest(object):
+	def before(self):
+		self.p = PopIt(lazy=True)
+
+	@test("lazy init should not set anything")
+	def _(self):
+		ok(self.p.initialized) == False
+		
+
+	@test("set_up should initialize the wrapper")
+	def _(self):
+		self.p.set_up(**conf)
+		ok(self.p.initialized) == True
+
 class AuthenticationTest(object):
 	@classmethod
 	def before_all(cls):
