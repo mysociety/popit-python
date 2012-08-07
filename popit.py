@@ -5,6 +5,7 @@ import slumber
 import logging
 from pprint import pprint
 from requests.exceptions import *
+from slumber.exceptions import *
 
 FORMAT = "[PopIt | %(levelname)s] %(message)s"
 log = logging.getLogger(__name__)
@@ -18,6 +19,11 @@ class SchemaError(NameError):
 		self.value = value
 	def __str__(self):
 		return repr(self.value)
+
+class NotInitializedError(RuntimeError):
+	def __str__(self):
+		return "The PopIt api wrapper is not yet initialized. Check if PopIt is running and then retry."
+		
 
 class PopIt(object):
 	def __init__(self, lazy = False, **args):
@@ -50,10 +56,36 @@ class PopIt(object):
 		else:
 			return str(self)
 
+	def get_url(self):
+		if self.initialized:
+			return self.__url()
+		else:
+			raise NotInitializedError()
+
+	def get_api_version(self):
+		if self.initialized:
+			return self.api_version
+		else:
+			raise NotInitializedError()
+
+	def is_online(self):
+		if self.initialized:
+			try:
+				# protocol ping
+				self.api.get()
+			except ConnectionError, e:
+				return False
+			else:
+				return True
+		else:
+			raise NotInitializedError()
+
 	def getGenericApi(self):
 		return self.api
 
 	def __getattr__(self, key):
+		if not self.initialized:
+			raise NotInitializedError()
 		if key in self.schemas:
 			return self.api.__call__(key)
 		else:

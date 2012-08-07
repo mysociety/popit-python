@@ -40,6 +40,26 @@ class GetterSetterTest(object):
 			self.p.sadfhoi83jhk3323
 		ok (f).raises(SchemaError)
 
+class StatusTest(object):
+	@classmethod
+	def before_all(cls):
+		cls.p = PopIt(**conf)
+
+	def before(self):
+		self.p = self.__class__.p
+
+	@test("is_online should return true")
+	def _(self):
+		ok(self.p.is_online()) == True
+
+	@test("api_version should return right version")
+	def _(self):
+		ok(self.p.get_api_version()) == conf['api_version']
+
+	@test("get_url should return a string")
+	def _(self):
+		ok(self.p.get_url()).is_a(str)
+
 class LazyTest(object):
 	def before(self):
 		self.p = PopIt(lazy=True)
