@@ -17,6 +17,7 @@ keys = [x for x in dir(config_test) if not x.startswith("__")]
 vals = map(lambda x: eval('config_test.'+x), keys)
 conf = dict(zip(keys, vals))
 
+
 class GetterSetterTest(object):
 
 	## invoked only once before all tests
@@ -40,6 +41,7 @@ class GetterSetterTest(object):
 			self.p.sadfhoi83jhk3323
 		ok (f).raises(SchemaError)
 
+
 class StatusTest(object):
 	@classmethod
 	def before_all(cls):
@@ -59,6 +61,7 @@ class StatusTest(object):
 	@test("get_url should return a string")
 	def _(self):
 		ok(self.p.get_url()).is_a(str)
+
 
 class LazyTest(object):
 	def before(self):
@@ -113,6 +116,7 @@ class CreateTest(object):
 	@test("can create organisation")
 	def _(self):
 		self.p.organisation.post({'name': 'Space Party'})
+
 
 class ReadUpdateDeleteTest(object):
 	@classmethod
