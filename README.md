@@ -83,4 +83,5 @@ Enable logging.
 * Copy the config_example.py to config_test.py
 * Change the entries in the testconfig.py to you local test server
 * Install [`oktest`](http://www.kuwata-lab.com/oktest/ "Website of oktest") (`pip install oktest`)
+* Make sure PopIt is running. You cannot test this Wrapper without a running PopIt instance. 
 * run `python test.py`
