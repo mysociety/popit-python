@@ -1,2 +1,4 @@
 *.pyc
 config_test.py
+PopIt_Python.egg-info
+dist
