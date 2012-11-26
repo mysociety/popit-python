@@ -2,6 +2,12 @@
 
 Python bindings to connect to the [PopIt](https://github.com/mysociety/popit) API. You can *create*, *read*, *update* and *delete* any items from PopIt through this Binding. Actually, this is only a convenient wrapper around [PopIt's](https://github.com/mysociety/popit) RESTful API.
 
+## Installation ##
+PopIt-Python is available as a module on PyPi, to install, simply run:
+
+    pip install PopIt-Python
+
+Alternatively, clone this repo and install as you see fit.
 
 ## How do I use this when I want to... ##
 
