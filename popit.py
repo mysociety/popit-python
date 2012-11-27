@@ -94,7 +94,7 @@ class PopIt(object):
 	def __schemas(self):
 		schemas_dict = self.api.get()['meta'];
 		schemas = [x[:x.find('_api_url')] for x in schemas_dict.keys() if x.find('_api_url') > 0]
-		log.debug('Available schemas: {}'.format(schemas))
+		log.debug('Available schemas: {0}'.format(schemas))
 		return schemas
 
 	def __api(self):
@@ -107,5 +107,5 @@ class PopIt(object):
 
 	def __url(self):
 		url = 'http://{instance}.{hostname}:{port}/api'.format(instance = self.instance, hostname = self.hostname, port = self.port)
-		log.debug('PopIt Url: {}'.format(url))
+		log.debug('PopIt Url: {0}'.format(url))
 		return url
