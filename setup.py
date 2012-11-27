@@ -3,10 +3,8 @@
 from setuptools import setup
 
 setup(name='PopIt-Python',
-	version='0.1.3',
+	version='0.1.4',
 	description='Python bindings to connect to the PopIt API',
-	long_description=open('README.rst', 'rt').read(),
-	data_files=[('', 'README.rst')],
 	author='mySociety',
 	author_email='modules@mysociety.org',
 	url='https://github.com/mysociety/popit-python',
