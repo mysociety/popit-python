@@ -1,2 +1,3 @@
+requests==0.14.2
 slumber==0.4.2
 Oktest==0.11.0

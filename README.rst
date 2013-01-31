@@ -98,8 +98,10 @@ Requirements
 
 If you don't use pip to install the module, you'll also need:
 
+* requests (``pip install requests==0.14.2``)
 * slumber (``pip install slumber``)
-* requests (``pip install requests``)
+
+Note you need to specify the version of requests, because slumber does not and it is not compatible with requests >= 1.0.0 yet.
 
 How to run the tests
 --------------------
