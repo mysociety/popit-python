@@ -86,7 +86,7 @@ You wanted to *create*, *update* or *delete* an item but provided a wrong userna
 
 *Note*: You won't see this error before you actually try to modify any data.
 
-**SchemaError: 'foo does not exist. Try one of these schemas: organization, position, person.'**
+**SchemaError: 'foo does not exist. Try one of these schemas: organizations, positions, persons.'**
 This happens when you try to get data from a schema that does not exist (in this case ``foo``). The available schemas are determined when you first create the api object.
 
 …get more information about what's going on internally?

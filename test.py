@@ -90,14 +90,14 @@ class AuthenticationTest(object):
 	@test("wrong credentials should not fail when only reading")
 	def _(self):
 		def f():
-			self.p.person.get()
+			self.p.persons.get()
 		NG (f).raises(HttpClientError)
 
 	@test("wrong credentials should raise exception when saving")
 	def _(self):
 		
 		def f():
-			self.p.person.post({'name': 'Albert Keinstein'})
+			self.p.persons.post({'name': 'Albert Keinstein'})
 		ok (f).raises(HttpClientError)
 
 
@@ -111,11 +111,11 @@ class CreateTest(object):
 
 	@test("can create person")
 	def _(self):
-		self.p.person.post({'name': 'Albert Keinstein'})
+		self.p.persons.post({'name': 'Albert Keinstein'})
 
 	@test("can create organization")
 	def _(self):
-		self.p.organization.post({'name': 'Space Party'})
+		self.p.organizations.post({'name': 'Space Party'})
 
 
 class ReadUpdateDeleteTest(object):
@@ -125,49 +125,49 @@ class ReadUpdateDeleteTest(object):
 
 	def before(self):
 		self.p = self.__class__.p
-		new = self.p.person.post({
+		new = self.p.persons.post({
 			'name': 'Albert Keinstein', 
 			'links': [{ 
 				'url': 'http://www.wikipedia.com/AlbertEinstein',
        			'comment': 'Wikipedia'
        		}]
 		})
-		self.id = new['result']['_id']
+		self.id = new['result']['id']
 
 	@test("can read person's name")
 	def _(self):
-		result = self.p.person(self.id).get()
+		result = self.p.persons(self.id).get()
 		data = result['result'] 
 		ok(data['name']) == "Albert Keinstein"
 
 	@test("can read person's links")
 	def _(self):
-		result = self.p.person(self.id).get()
+		result = self.p.persons(self.id).get()
 		data = result['result']
 		ok(data['links'][0]['url']) == "http://www.wikipedia.com/AlbertEinstein"
 		ok(data['links'][0]['comment']) == "Wikipedia"
 
 	@test("can edit person's name")
 	def _(self):
-		self.p.person(self.id).put({"name": "Albert Einstein"})
-		result = self.p.person(self.id).get()
+		self.p.persons(self.id).put({"name": "Albert Einstein"})
+		result = self.p.persons(self.id).get()
 		ok(result['result']['name']) == "Albert Einstein"
 
 	@test("can delete person")
 	def _(self):
-		result = self.p.person(self.id).delete()
+		result = self.p.persons(self.id).delete()
 		ok(result) == True
 		def f():
-			result = self.p.person(self.id).get()
+			result = self.p.persons(self.id).get()
 		ok (f).raises(HttpClientError)
 
 	@test("cannot delete person twice")
 	def _(self):
-		result = self.p.person(self.id).delete()
+		result = self.p.persons(self.id).delete()
 		ok(result) == True
 		
 		def f():
-			self.p.person(self.id).delete()
+			self.p.persons(self.id).delete()
 		ok (f).raises(HttpClientError)
 
 ## invoke tests
