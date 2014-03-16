@@ -21,7 +21,7 @@ First, you'll need to get the PopIt binding object. Make sure PopIt as running a
     api = PopIt(instance='professors',
                 hostname='127-0-0-1.org.uk',
                 port=3000,
-                api_version='v1',
+                api_version='v0.1',
                 user='test@test.co.uk',
                 password='tJo1zBum')
 

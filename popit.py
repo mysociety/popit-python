@@ -38,7 +38,7 @@ class PopIt(object):
 			'instance': 'www',
 			'hostname': 'popit.mysociety.org',
 			'port': 80,
-			'api_version': 'v1',
+			'api_version': 'v0.1',
 			'user': None,
 			'password': None
 		}
