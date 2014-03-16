@@ -113,9 +113,9 @@ class CreateTest(object):
 	def _(self):
 		self.p.person.post({'name': 'Albert Keinstein'})
 
-	@test("can create organisation")
+	@test("can create organization")
 	def _(self):
-		self.p.organisation.post({'name': 'Space Party'})
+		self.p.organization.post({'name': 'Space Party'})
 
 
 class ReadUpdateDeleteTest(object):
