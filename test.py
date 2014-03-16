@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from popit import *
+from popit_api import *
 from slumber.exceptions import *
 import logging
 from pprint import pprint
