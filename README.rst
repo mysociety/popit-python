@@ -35,9 +35,9 @@ First, you'll need to get the PopIt binding object. Make sure PopIt as running a
 …create something?
 ~~~~~~~~~~~~~~~~~~
 
-This PopitWrapper lets you easily create a new item by name. This can be a ``person``, ``organisation`` or ``position``. There may be other options that you can find in the `PopIt API documentation <https://github.com/mysociety/popit/wiki/API-Overview>`_. ::
+This PopitWrapper lets you easily create a new item by name. This can be a ``person``, ``organization`` or ``position``. There may be other options that you can find in the `PopIt API documentation <https://github.com/mysociety/popit/wiki/API-Overview>`_. ::
 
-    new_person = api.person.post({'name': 'Albert Keinstein'})
+    new_person = api.persons.post({'name': 'Albert Keinstein'})
     print(new_person)
 
     # get the id of the newly created item
@@ -50,12 +50,12 @@ This PopitWrapper lets you easily create a new item by name. This can be a ``per
 If you want to get a single item from PopIt, use ``name(id)``. ::
 
     # you need a valid ID for example from the create process.
-    person = api.person(id).get()
+    person = api.persons(id).get()
     print(person)
 
 To get all Items from a kind, use `get()`. ::
 
-    people = api.person.get()
+    people = api.persons.get()
     print(people)
 
 …update something?
@@ -63,7 +63,7 @@ To get all Items from a kind, use `get()`. ::
 
 ::
 
-    result = api.person(id).put({"name": "Albert Einstein"})
+    result = api.persons(id).put({"name": "Albert Einstein"})
     print(result)
 
 …delete something?
@@ -71,7 +71,7 @@ To get all Items from a kind, use `get()`. ::
 
 ::
 
-    successfully_deleted = api.person(id).delete()
+    successfully_deleted = api.persons(id).delete()
 
 …get an error?
 ~~~~~~~~~~~~~~
