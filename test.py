@@ -129,7 +129,7 @@ class ReadUpdateDeleteTest(object):
             'name': 'Albert Keinstein',
             'links': [{
                 'url': 'http://www.wikipedia.com/AlbertEinstein',
-                'comment': 'Wikipedia'
+                'note': 'Wikipedia'
                }]
         })
         self.id = new['result']['id']
@@ -145,7 +145,7 @@ class ReadUpdateDeleteTest(object):
         result = self.p.persons(self.id).get()
         data = result['result']
         ok(data['links'][0]['url']) == "http://www.wikipedia.com/AlbertEinstein"
-        ok(data['links'][0]['comment']) == "Wikipedia"
+        ok(data['links'][0]['note']) == "Wikipedia"
 
     @test("can edit person's name")
     def _(self):
