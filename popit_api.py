@@ -103,7 +103,9 @@ class PopIt(object):
 
     def __slumber_api(self):
         url = self.__url()
-        return slumber.API(url, auth=(self.user, self.password))
+        return slumber.API(url,
+                           auth=(self.user, self.password),
+                           append_slash=False)
 
     def __url(self):
         url = 'http://{instance}.{hostname}:{port}/api'.format(instance = self.instance, hostname = self.hostname, port = self.port)
