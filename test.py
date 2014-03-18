@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from popit_api import *
-from slumber.exceptions import *
+from slumber.exceptions import HttpClientError
 import logging
 from pprint import pprint
 from oktest import test, ok, NG, DIFF
