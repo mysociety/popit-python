@@ -161,14 +161,12 @@ class ReadUpdateDeleteTest(object):
             result = self.p.persons(self.id).get()
         ok (f).raises(HttpClientError)
 
-    @test("cannot delete person twice")
+    @test("deleting a person twice doesn't raise an error")
     def _(self):
         result = self.p.persons(self.id).delete()
         ok(result) == True
-
-        def f():
-            self.p.persons(self.id).delete()
-        ok (f).raises(HttpClientError)
+        result = self.p.persons(self.id).delete()
+        ok(result) == True
 
 ## invoke tests
 if __name__ == '__main__':
