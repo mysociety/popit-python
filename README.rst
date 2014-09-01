@@ -35,7 +35,7 @@ First, you'll need to get the PopIt binding object. Make sure PopIt as running a
 …create something?
 ~~~~~~~~~~~~~~~~~~
 
-This PopitWrapper lets you easily create a new item by name. This can be a ``person``, ``organization`` or ``position``. There may be other options that you can find in the `PopIt API documentation <https://github.com/mysociety/popit/wiki/API-Overview>`_. ::
+This PopitWrapper lets you easily create a new item by name. This can be a ``person``, ``organization`` or ``position``. There may be other options that you can find in the `PopIt API documentation <http://popit.poplus.org/docs/api/>`_. ::
 
     new_person = api.persons.post({'name': 'Albert Keinstein'})
     print(new_person)
