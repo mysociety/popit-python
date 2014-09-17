@@ -22,15 +22,22 @@ First, you'll need to get the PopIt binding object. Make sure PopIt as running a
                 hostname='127-0-0-1.org.uk',
                 port=3000,
                 api_version='v0.1',
-                user='test@test.co.uk',
-                password='tJo1zBum')
+                api_key='f093903b7a1aa9688b36241502beadc7')
 
 * ``instance`` Name of the instance you created. There can be more than one for one installation.
 * ``hostname`` The hostname of the PopIt server.
 * ``api_version`` The version of the PopIt API. Since there may be changes in the way you access the data in PopIt you want to have a stable API version. We recommend that you use the latest version, if possible.
 * ``port`` The port that PopIt is listening on. This probably is ``80`` or ``3000``. ``80`` is the default.
-* ``user`` Your username. You will not be able to write anything if you haven't provided your username and password.
-* ``password`` The password for the user.
+* ``api_key`` This is the API key you can request by clicking
+  'Get API key' in the PopIt web interface for your instance, as
+  `described in the documentation <http://popit.poplus.org/docs/api/#authentication>`_.
+
+If you're still using an older PopIt instance and have not upgraded
+your account for the new, more secure authentication system, instead
+of ``api_key`` you can supply ``user`` and ``password``:
+
+* ``user`` Your username, the email address that you created the instance with
+* ``password`` The password you were emailed when creating the instance
 
 …create something?
 ~~~~~~~~~~~~~~~~~~

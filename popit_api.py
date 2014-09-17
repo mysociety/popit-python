@@ -4,6 +4,7 @@
 import slumber
 import logging
 from pprint import pprint
+from requests.auth import AuthBase
 from requests.exceptions import *
 from slumber.exceptions import *
 
@@ -13,6 +14,13 @@ log = logging.getLogger(__name__)
 if __name__ == '__main__':
     logging.basicConfig(level = logging.DEBUG, format=FORMAT)
     log.setLevel(logging.DEBUG)
+
+class PopItApiKeyAuth(AuthBase):
+    def __init__(self, api_key):
+        self.api_key = api_key
+    def __call__(self, r):
+        r.headers['Apikey'] = str(self.api_key)
+        return r
 
 class SchemaError(NameError):
     def __init__(self, value):
@@ -40,7 +48,8 @@ class PopIt(object):
             'port': 80,
             'api_version': 'v0.1',
             'user': None,
-            'password': None
+            'password': None,
+            'api_key': None,
         }
         defaults.update(args)
         self.__dict__.update(defaults)
@@ -103,8 +112,12 @@ class PopIt(object):
 
     def __slumber_api(self):
         url = self.__url()
+        if self.api_key:
+            auth = PopItApiKeyAuth(api_key=self.api_key)
+        else:
+            auth = (self.user, self.password)
         return slumber.API(url,
-                           auth=(self.user, self.password),
+                           auth=auth,
                            append_slash=False)
 
     def __url(self):
