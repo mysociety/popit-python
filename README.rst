@@ -16,7 +16,7 @@ How do I use this when I want to...
 
 First, you'll need to get the PopIt binding object. Make sure PopIt as running and that you have all the information you need. Then get the object use the `PopIt` constructor. ::
 
-    from popit import PopIt
+    from popit_api import PopIt
 
     api = PopIt(instance='professors',
                 hostname='127-0-0-1.org.uk',
