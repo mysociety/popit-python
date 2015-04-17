@@ -3,7 +3,7 @@
 from setuptools import setup
 
 setup(name='PopIt-Python',
-    version='0.1.10',
+    version='0.1.11',
     description='Python bindings to connect to the PopIt API',
         long_description=open('README.rst', 'rt').read(),
     author='mySociety',
