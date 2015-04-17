@@ -10,5 +10,5 @@ setup(name='PopIt-Python',
     author_email='modules@mysociety.org',
     url='https://github.com/mysociety/popit-python',
     py_modules=['popit_api'],
-    install_requires=['requests==0.14.2','slumber']
+    install_requires=['requests==2.6.0','slumber']
 )
