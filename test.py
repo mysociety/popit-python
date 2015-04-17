@@ -81,6 +81,8 @@ class AuthenticationTest(object):
     @classmethod
     def before_all(cls):
         wrong_conf = conf.copy()
+        wrong_conf.pop('api_key', None)
+        wrong_conf['user'] = 'test@test.co.uk'
         wrong_conf['password'] = '3h45hk345h'
         cls.p = PopIt(**wrong_conf)
 
