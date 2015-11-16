@@ -1,3 +1,5 @@
+**NOTE: Development on PopIt has stopped and it is no longer being maintained.** `Please read the announcement to find out more <https://groups.google.com/forum/#!msg/poplus/hIFdan_rIS8/36rx3dLPCQAJ>`_ .
+
 popit-python
 ============
 
